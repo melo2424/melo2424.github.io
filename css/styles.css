@@ -376,7 +376,38 @@ dialog.win { position: fixed; inset: 0; margin: auto; height: fit-content; }
 .play-sub { color: #dfe6ff; font-size: 13px; line-height: 1.35; }
 .play-go { font: 28px/1 var(--mono); animation: blink 1s steps(2, start) infinite; }
 .play:focus-visible { outline: 1px dotted #ffd23f; outline-offset: -5px; }
+.play-doom { background: #1a0000; color: #ff3b1f; box-shadow: inset -1px -1px var(--dark), inset 1px 1px #8a2a1a, inset -2px -2px #000, inset 2px 2px #5a1208; }
+.play-doom:hover { background: #300400; }
+.play-doom .play-sub { color: #f2d6c8; }
+.play-doom:focus-visible { outline-color: #ff3b1f; }
 @keyframes bob { 50% { transform: translateY(-3px); } }
+
+/* ---------- DOOM (js-dos) ---------- */
+#win-doom { grid-column: span 12; }
+.doom-screen {
+  position: relative; background: #000; padding: 0;
+  width: min(100%, calc((100vh - 260px) * 4 / 3)); min-width: min(100%, 320px);
+  aspect-ratio: 4 / 3; justify-self: center; overflow: hidden;
+}
+.doom-frame { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; background: #000; }
+.doom-splash {
+  position: absolute; inset: 0; display: grid; place-content: center; justify-items: center;
+  gap: 10px; padding: 16px; text-align: center; color: #c8c8c8; font-family: var(--mono);
+  background: radial-gradient(ellipse at 50% 70%, #3a0a00 0%, #000 70%);
+}
+.doom-prompt { font-size: 20px; color: #a8a8a8; }
+.doom-prompt span { animation: blink 1s steps(2, start) infinite; }
+.doom-name { font: clamp(64px, 14vw, 132px)/0.9 var(--mono); color: #ff3b1f; letter-spacing: 0.08em; text-shadow: 4px 4px 0 #5a1208; }
+.doom-ep { font-size: 20px; color: #f2d6c8; }
+.doom-go { min-height: 48px; min-width: 180px; font-size: 18px; margin-top: 6px; font-family: var(--ui); }
+.doom-size { font-size: 18px; color: #8a8a8a; }
+.doom-bar { display: grid; grid-template-columns: minmax(0, 1fr) auto auto; gap: 8px; align-items: stretch; }
+.doom-status { background: var(--paper); padding: 6px 10px; font-size: 14px; line-height: 1.4; display: flex; align-items: center; min-width: 0; }
+.doom-keys { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 4px 12px; font-size: 13px; }
+.doom-keys div { display: flex; gap: 6px; min-width: 0; }
+.doom-keys dt { font-weight: 700; white-space: nowrap; }
+.doom-legal { font-size: 12px; color: var(--ink-soft); line-height: 1.45; }
+.win.max .doom-screen { width: min(100%, calc((100vh - var(--taskbar) - 200px) * 4 / 3)); }
 @keyframes blink { to { visibility: hidden; } }
 
 /* ---------- Juego ---------- */
@@ -457,6 +488,10 @@ dialog.win { position: fixed; inset: 0; margin: auto; height: fit-content; }
   .game-body { grid-template-columns: minmax(0, 1fr); }
   .game-hud { grid-template-columns: minmax(0, 1fr); }
   .play-title { font-size: 24px; }
+  .doom-screen { width: 100%; min-width: 0; }
+  .doom-bar { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .doom-status { grid-column: 1 / -1; }
+  .doom-keys { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 @media (max-width: 1180px) and (min-width: 761px) {
   .game-body { grid-template-columns: minmax(0, 1fr); }

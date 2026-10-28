@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>DOOM · Andrés OS</title>
+  <!-- js-dos trae estilos globales (Tailwind/daisyUI); por eso corre aislado en esta página dentro de un iframe -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/js-dos@8.5.3/dist/js-dos.css">
+  <style>
+    html, body { margin: 0; height: 100%; background: #000; overflow: hidden; }
+    #dos { width: 100%; height: 100%; }
+  </style>
+</head>
+<body>
+  <div id="dos"></div>
+  <script src="https://cdn.jsdelivr.net/npm/js-dos@8.5.3/dist/js-dos.js"></script>
+  <script>
+    Dos(document.getElementById("dos"), {
+      url: "assets/doom/doom1.jsdos",
+      pathPrefix: "https://cdn.jsdelivr.net/npm/js-dos@8.5.3/dist/emulators/",
+      autoStart: true,
+      countDownStart: 0,
+      kiosk: true,
+      theme: "dark",
+      imageRendering: "pixelated",
+      renderAspect: "4/3",
+      mouseCapture: false
+    });
+  </script>
+</body>
+</html>

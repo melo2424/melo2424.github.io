@@ -46,6 +46,7 @@
     w.style.transform = "";
     w.dataset.tx = w.dataset.ty = "0";
     renderTasks();
+    w.dispatchEvent(new CustomEvent("win-close"));
   }
 
   function toggleMax(w) {
@@ -75,7 +76,7 @@
   }
 
   wins.forEach(function (w) {
-    w.dataset.state = "open";
+    w.dataset.state = w.hidden ? "closed" : "open";
     w.addEventListener("pointerdown", function () { if (!w.classList.contains("active")) focusWin(w); });
     w.querySelectorAll(".win-ctrl button").forEach(function (b) {
       b.addEventListener("click", function (e) {
@@ -131,10 +132,12 @@
   document.addEventListener("keydown", function (e) {
     if (e.key !== "Escape") return;
     var max = document.querySelector(".win.max");
-    if (max && document.getElementById("start-menu").hidden) max.classList.remove("max");
+    // En DOOM, Esc abre el menú del juego: no debe restaurar la ventana
+    if (max && max.dataset.win !== "doom" && document.getElementById("start-menu").hidden) max.classList.remove("max");
   });
 
   renderTasks();
+  if (location.hash === "#doom") openWin("doom");
 
   /* ---------- Pestañas ---------- */
   document.querySelectorAll('[role="tablist"]').forEach(function (list) {
@@ -170,6 +173,7 @@
       return [
         "Comandos disponibles:",
         "  jugar         Abre el minijuego Pesca TI",
+        "  doom          Abre DOOM (shareware, 1993) en MS-DOS",
         "  perfil        Quién soy",
         "  stack         Tecnologías con las que trabajo",
         "  experiencia   Dónde trabajo",
@@ -215,6 +219,10 @@
     jugar: function () {
       if (window.PescaTI) window.PescaTI.open();
       return "Iniciando PESCA TI.EXE… Michi ya tiene la caña lista.";
+    },
+    doom: function () {
+      openWin("doom");
+      return "Abriendo DOOM.EXE… Pulsa Iniciar DOOM para arrancar el emulador.";
     },
     hola: function () { return "¡Hola! Escribe ayuda para empezar."; },
     ver: function () { return "Andrés OS [Versión 26.10]"; }

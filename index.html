@@ -83,6 +83,13 @@
         <rect x="11" y="12" width="2" height="2" fill="#1b1b2a"/><rect x="11" y="12" width="1" height="1" fill="#fff"/><rect x="15" y="11" width="1" height="7" fill="#e06b00"/><rect x="18" y="11" width="1" height="7" fill="#e06b00"/>
         <rect x="14" y="2" width="1" height="8" fill="#e9eef4"/><rect x="13" y="6" width="3" height="2" fill="#e63946"/>
       </symbol>
+      <symbol id="i-doom" viewBox="0 0 32 32" shape-rendering="crispEdges">
+        <rect x="2" y="26" width="28" height="4" fill="#c22"/><rect x="5" y="22" width="4" height="4" fill="#f60"/><rect x="23" y="21" width="4" height="5" fill="#f60"/><rect x="14" y="24" width="4" height="2" fill="#ffb000"/>
+        <rect x="9" y="3" width="14" height="2" fill="#e8e2d0"/><rect x="7" y="5" width="18" height="12" fill="#e8e2d0"/><rect x="10" y="17" width="12" height="7" fill="#e8e2d0"/>
+        <rect x="9" y="9" width="5" height="5" fill="#1b1b2a"/><rect x="18" y="9" width="5" height="5" fill="#1b1b2a"/><rect x="11" y="11" width="2" height="2" fill="#f22"/><rect x="19" y="11" width="2" height="2" fill="#f22"/>
+        <rect x="15" y="15" width="2" height="3" fill="#1b1b2a"/><rect x="12" y="20" width="1" height="4" fill="#1b1b2a"/><rect x="15" y="20" width="1" height="4" fill="#1b1b2a"/><rect x="18" y="20" width="1" height="4" fill="#1b1b2a"/>
+        <rect x="23" y="5" width="2" height="12" fill="#b8b09a"/><rect x="20" y="17" width="2" height="7" fill="#b8b09a"/>
+      </symbol>
     </defs>
   </svg>
 
@@ -91,6 +98,7 @@
       <button class="icon" type="button" data-open="about"><svg aria-hidden="true"><use href="#i-pc"/></svg><span>Mi PC</span></button>
       <button class="icon" type="button" data-open="term"><svg aria-hidden="true"><use href="#i-term"/></svg><span>Terminal</span></button>
       <button class="icon" type="button" data-game><svg aria-hidden="true"><use href="#i-fish"/></svg><span>Pesca TI.exe</span></button>
+      <button class="icon" type="button" data-open="doom"><svg aria-hidden="true"><use href="#i-doom"/></svg><span>DOOM.exe</span></button>
       <button class="icon" type="button" data-open="exp"><svg aria-hidden="true"><use href="#i-doc"/></svg><span>Experiencia.doc</span></button>
       <button class="icon" type="button" data-open="skills"><svg aria-hidden="true"><use href="#i-panel"/></svg><span>Habilidades</span></button>
       <button class="icon" type="button" data-open="certs"><svg aria-hidden="true"><use href="#i-folder"/></svg><span>Certificados</span></button>
@@ -173,6 +181,12 @@
               <span class="play-sub">Ayuda a Michi, el gato de soporte, a pescar componentes en el río</span></span>
             <span class="play-go" aria-hidden="true">▶</span>
           </button>
+          <button type="button" class="play play-doom" data-open="doom">
+            <svg aria-hidden="true"><use href="#i-doom"/></svg>
+            <span class="play-text"><span class="play-title">JUGAR: DOOM</span>
+              <span class="play-sub">El clásico de 1993 corriendo en MS-DOS dentro del navegador</span></span>
+            <span class="play-go" aria-hidden="true">▶</span>
+          </button>
           <div class="term sunken" id="term">
             <pre class="term-out" id="term-out" role="log" aria-live="polite">Andrés OS [Versión 26.10]
 (C) Andrés Rodríguez Melo. Escribe <b>ayuda</b> para ver los comandos.
@@ -192,11 +206,52 @@ C:\ANDRES&gt; stack
           <div class="term-quick" id="term-hint">
             <span>Prueba:</span>
             <button type="button" class="btn btn-sm" data-cmd="jugar">jugar</button>
+            <button type="button" class="btn btn-sm" data-cmd="doom">doom</button>
             <button type="button" class="btn btn-sm" data-cmd="ayuda">ayuda</button>
             <button type="button" class="btn btn-sm" data-cmd="perfil">perfil</button>
             <button type="button" class="btn btn-sm" data-cmd="proyectos">proyectos</button>
             <button type="button" class="btn btn-sm" data-cmd="contacto">contacto</button>
           </div>
+        </div>
+      </section>
+
+      <!-- DOOM (shareware) con js-dos; el emulador se descarga solo al pulsar Iniciar -->
+      <section class="win" id="win-doom" data-win="doom" data-icon="i-doom" aria-labelledby="t-doom" tabindex="-1" hidden>
+        <header class="win-bar">
+          <svg class="win-ico" aria-hidden="true"><use href="#i-doom"/></svg>
+          <h2 class="win-title" id="t-doom">DOOM.exe – MS-DOS</h2>
+          <div class="win-ctrl">
+            <button type="button" data-act="min" aria-label="Minimizar DOOM"><span class="g-min"></span></button>
+            <button type="button" data-act="max" aria-label="Maximizar DOOM"><span class="g-max"></span></button>
+            <button type="button" data-act="close" aria-label="Cerrar DOOM"><span class="g-close"></span></button>
+          </div>
+        </header>
+        <div class="win-body doom-body">
+          <div class="doom-screen sunken" id="doom-screen">
+            <div class="doom-splash" id="doom-splash">
+              <p class="doom-prompt">C:\JUEGOS\DOOM&gt; DOOM.EXE<span aria-hidden="true">_</span></p>
+              <p class="doom-name">DOOM</p>
+              <p class="doom-ep">Episodio 1: Knee-Deep in the Dead · shareware v1.9</p>
+              <button type="button" class="btn btn-default doom-go" id="doom-start">Iniciar DOOM</button>
+              <p class="doom-size">Se descarga al pulsar: emulador y juego, unos 4 MB.</p>
+            </div>
+          </div>
+          <div class="doom-bar">
+            <p class="doom-status sunken" id="doom-status" aria-live="polite">Listo. DOSBox corre en tu navegador con WebAssembly.</p>
+            <button type="button" class="btn" id="doom-full" disabled>Pantalla completa</button>
+            <button type="button" class="btn" id="doom-stop" disabled>Apagar</button>
+          </div>
+          <dl class="doom-keys">
+            <div><dt>Flechas</dt><dd>Moverse</dd></div>
+            <div><dt>Ctrl</dt><dd>Disparar</dd></div>
+            <div><dt>Espacio</dt><dd>Abrir puertas</dd></div>
+            <div><dt>Shift</dt><dd>Correr</dd></div>
+            <div><dt>Alt + flechas</dt><dd>Paso lateral</dd></div>
+            <div><dt>1 – 7</dt><dd>Cambiar arma</dd></div>
+            <div><dt>Esc</dt><dd>Menú del juego</dd></div>
+            <div><dt>Clic</dt><dd>Activa el teclado</dd></div>
+          </dl>
+          <p class="doom-legal">DOOM © 1993 id Software. Versión shareware, de libre distribución sin modificar. Emulación con <a href="https://js-dos.com/" target="_blank" rel="noopener">js-dos</a> (DOSBox en WebAssembly). Se juega con teclado.</p>
         </div>
       </section>
 
@@ -421,6 +476,7 @@ C:\ANDRES&gt; stack
       <li><button type="button" data-open="about"><svg aria-hidden="true"><use href="#i-pc"/></svg>Sobre mí</button></li>
       <li><button type="button" data-open="term"><svg aria-hidden="true"><use href="#i-term"/></svg>Terminal</button></li>
       <li><button type="button" data-game><svg aria-hidden="true"><use href="#i-fish"/></svg>Pesca TI</button></li>
+      <li><button type="button" data-open="doom"><svg aria-hidden="true"><use href="#i-doom"/></svg>DOOM</button></li>
       <li><button type="button" data-open="exp"><svg aria-hidden="true"><use href="#i-doc"/></svg>Experiencia</button></li>
       <li><button type="button" data-open="skills"><svg aria-hidden="true"><use href="#i-panel"/></svg>Habilidades</button></li>
       <li><button type="button" data-open="certs"><svg aria-hidden="true"><use href="#i-folder"/></svg>Certificados</button></li>
@@ -503,6 +559,7 @@ C:\ANDRES&gt; stack
   </div>
 
   <script src="js/pesca.js" defer></script>
+  <script src="js/doom.js" defer></script>
   <script src="js/main.js" defer></script>
 </body>
 </html>
