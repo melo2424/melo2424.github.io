@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Llanotek — Soporte técnico en Villavicencio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#0B2545; --green:#2E9E5B; --green-d:#247F49; --orange:#F28C28;
+    --cloud:#F4F6F8; --coal:#2B2D42; --line:#DDE2E8; --white:#fff;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:'Montserrat',system-ui,sans-serif;color:var(--coal);background:var(--white);line-height:1.6}
+  a{color:inherit}
+  .wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+  /* header */
+  header{position:sticky;top:0;z-index:10;background:rgba(255,255,255,.95);backdrop-filter:blur(6px);border-bottom:1px solid var(--line)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:72px}
+  .brand{display:flex;align-items:center;gap:10px;text-decoration:none}
+  .brand b{font-size:24px;font-weight:800;color:var(--navy);letter-spacing:-.5px}
+  .brand b span{font-weight:500;color:var(--green)}
+  .menu{display:flex;gap:28px;align-items:center;font-weight:500;font-size:15px}
+  .menu a{text-decoration:none}
+  .menu a:hover{color:var(--green)}
+  .btn{display:inline-flex;align-items:center;gap:8px;padding:13px 22px;border-radius:999px;font-weight:700;font-size:15px;text-decoration:none;border:2px solid transparent;cursor:pointer;transition:transform .15s, box-shadow .15s}
+  .btn:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(11,37,69,.15)}
+  .btn-orange{background:var(--orange);color:var(--white)}
+  .btn-ghost{border-color:var(--white);color:var(--white)}
+  .btn-navy{background:var(--navy);color:var(--white)}
+  /* hero */
+  .hero{background:var(--navy);color:var(--white);position:relative;overflow:hidden}
+  .hero .wrap{display:grid;grid-template-columns:1.15fr .85fr;gap:40px;align-items:center;padding-top:80px;padding-bottom:110px}
+  .tag{display:inline-block;background:rgba(46,158,91,.18);color:#7FDBA4;font-weight:600;font-size:13px;padding:6px 14px;border-radius:999px;margin-bottom:20px;letter-spacing:.3px}
+  h1{font-size:clamp(34px,5vw,56px);line-height:1.08;font-weight:800;letter-spacing:-1px;margin-bottom:20px}
+  h1 em{font-style:normal;color:var(--orange)}
+  .hero p{font-size:18px;opacity:.88;max-width:520px;margin-bottom:32px}
+  .cta{display:flex;gap:14px;flex-wrap:wrap}
+  .hero-art{justify-self:center;width:min(360px,80%);border-radius:50%;box-shadow:0 0 0 10px rgba(255,255,255,.08),0 0 0 22px rgba(255,255,255,.04),0 0 60px rgba(242,140,40,.35)}
+  .horizon{position:absolute;left:0;right:0;bottom:-1px;height:70px}
+  /* sections */
+  section{padding:88px 0}
+  .eyebrow{color:var(--green);font-weight:700;font-size:13px;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:10px}
+  h2{font-size:clamp(28px,3.5vw,38px);font-weight:800;color:var(--navy);letter-spacing:-.5px;line-height:1.15;margin-bottom:14px}
+  .lead{font-size:17px;max-width:600px;margin-bottom:44px}
+  .grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+  .card{background:var(--white);border:1px solid var(--line);border-radius:18px;padding:28px 24px;transition:border-color .2s, transform .2s}
+  .card:hover{border-color:var(--green);transform:translateY(-4px)}
+  .icon{width:52px;height:52px;border-radius:14px;background:rgba(46,158,91,.12);display:grid;place-items:center;margin-bottom:18px}
+  .card h3{font-size:18px;color:var(--navy);margin-bottom:8px}
+  .card p{font-size:15px}
+  .bg-cloud{background:var(--cloud)}
+  .why{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+  .why div{padding:4px 0}
+  .why strong{display:block;font-size:34px;font-weight:800;color:var(--orange);line-height:1.1}
+  .why span{font-weight:700;color:var(--navy);display:block;margin:6px 0 4px}
+  .why p{font-size:14.5px}
+  /* pricing */
+  .prices{display:grid;grid-template-columns:1.3fr 1fr;gap:28px;align-items:start}
+  table{width:100%;border-collapse:collapse;background:var(--white);border-radius:18px;overflow:hidden;border:1px solid var(--line)}
+  td{padding:16px 22px;border-bottom:1px solid var(--line);font-size:15.5px}
+  tr:last-child td{border-bottom:none}
+  td:last-child{text-align:right;font-weight:700;color:var(--navy);white-space:nowrap}
+  .free{color:var(--green)!important}
+  .plan{background:var(--navy);color:var(--white);border-radius:22px;padding:34px 30px;position:relative}
+  .plan .badge{position:absolute;top:-14px;left:30px;background:var(--orange);color:#fff;font-size:12px;font-weight:700;padding:6px 14px;border-radius:999px;letter-spacing:.5px}
+  .plan h3{font-size:22px;margin-bottom:6px}
+  .plan .amount{font-size:40px;font-weight:800;margin:10px 0 2px}
+  .plan .amount small{font-size:16px;font-weight:500;opacity:.75}
+  .plan ul{list-style:none;margin:20px 0 26px}
+  .plan li{padding:7px 0 7px 30px;position:relative;font-size:15px}
+  .plan li::before{content:"";position:absolute;left:0;top:11px;width:18px;height:18px;border-radius:50%;background:var(--green) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12l5 5L20 7'/%3E%3C/svg%3E") center/11px no-repeat}
+  /* steps */
+  .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;counter-reset:s}
+  .step{position:relative;padding-top:58px}
+  .step::before{counter-increment:s;content:counter(s);position:absolute;top:0;left:0;width:44px;height:44px;border-radius:50%;background:var(--orange);color:#fff;font-weight:800;font-size:18px;display:grid;place-items:center}
+  .step h3{color:var(--navy);font-size:17px;margin-bottom:6px}
+  .step p{font-size:14.5px}
+  /* contact */
+  .contact{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start}
+  .info p{margin-bottom:12px}
+  .info b{color:var(--navy)}
+  form{background:var(--white);border:1px solid var(--line);border-radius:20px;padding:28px;display:grid;gap:14px}
+  label{font-size:14px;font-weight:600;color:var(--navy);display:grid;gap:6px}
+  input,select,textarea{font:inherit;font-size:15px;padding:12px 14px;border:1.5px solid var(--line);border-radius:12px;background:var(--cloud);color:var(--coal)}
+  input:focus,select:focus,textarea:focus{outline:none;border-color:var(--green);background:#fff}
+  .check{display:flex;gap:10px;align-items:flex-start;font-weight:500;font-size:13px;color:var(--coal)}
+  .check input{margin-top:3px}
+  .note{font-size:13px;color:var(--green-d);font-weight:600;min-height:1em}
+  footer{background:var(--navy);color:rgba(255,255,255,.8);padding:40px 0;font-size:14px}
+  footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;align-items:center}
+  @media (max-width:900px){
+    .menu a:not(.btn){display:none}
+    .hero .wrap,.prices,.contact{grid-template-columns:1fr}
+    .hero-art{display:none}
+    .grid4,.why,.steps{grid-template-columns:1fr 1fr}
+  }
+  @media (max-width:560px){
+    .grid4,.why,.steps{grid-template-columns:1fr}
+    section{padding:64px 0}
+  }
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute">
+  <defs>
+    <clipPath id="lc"><circle cx="50" cy="50" r="50"/></clipPath>
+    <symbol id="logo" viewBox="0 0 100 100">
+      <circle cx="50" cy="50" r="50" fill="#0B2545"/>
+      <g clip-path="url(#lc)">
+        <circle cx="50" cy="62" r="26" fill="#F28C28"/>
+        <rect x="0" y="62" width="100" height="40" fill="#2E9E5B"/>
+        <path d="M0 77 Q50 68 100 77 L100 100 L0 100Z" fill="#247F49"/>
+        <line x1="0" y1="62" x2="100" y2="62" stroke="#fff" stroke-width="1.8"/>
+      </g>
+      <path d="M13 50 H35 L43 42 H58 L67 33 H85" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+      <circle cx="13" cy="50" r="4.6" fill="#fff"/><circle cx="85" cy="33" r="4.6" fill="#fff"/>
+    </symbol>
+  </defs>
+</svg>
+
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="#inicio" aria-label="Llanotek inicio">
+      <svg width="40" height="40"><use href="#logo"/></svg>
+      <b>Llano<span>tek</span></b>
+    </a>
+    <nav class="menu">
+      <a href="#servicios">Servicios</a>
+      <a href="#precios">Precios</a>
+      <a href="#como-funciona">Cómo funciona</a>
+      <a href="#contacto">Contacto</a>
+      <a class="btn btn-orange js-wa" href="#contacto">Escríbenos por WhatsApp</a>
+    </nav>
+  </div>
+</header>
+
+<main id="inicio">
+  <div class="hero">
+    <div class="wrap">
+      <div>
+        <span class="tag">Soporte técnico a domicilio y remoto · Villavicencio</span>
+        <h1>Tu computador funcionando <em>hoy mismo</em></h1>
+        <p>Vamos a tu casa o negocio en Villavicencio. Precio fijo antes de empezar, 30 días de garantía y cero enredos técnicos.</p>
+        <div class="cta">
+          <a class="btn btn-orange" href="#contacto">Agendar visita</a>
+          <a class="btn btn-ghost" href="#precios">Diagnóstico gratis</a>
+        </div>
+      </div>
+      <svg class="hero-art" viewBox="0 0 100 100" aria-hidden="true"><use href="#logo"/></svg>
+    </div>
+    <svg class="horizon" viewBox="0 0 1440 70" preserveAspectRatio="none" aria-hidden="true">
+      <path d="M0 40 Q720 0 1440 40 V70 H0Z" fill="#fff"/>
+    </svg>
+  </div>
+
+  <section id="servicios">
+    <div class="wrap">
+      <div class="eyebrow">Servicios</div>
+      <h2>Todo lo que tu tecnología necesita</h2>
+      <p class="lead">Atendemos hogares, estudiantes y pequeños negocios: tiendas, droguerías, consultorios y peluquerías.</p>
+      <div class="grid4">
+        <div class="card">
+          <div class="icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#2E9E5B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/></svg></div>
+          <h3>Mantenimiento</h3>
+          <p>Limpieza física y de software para que tu equipo vuelva a ser rápido y no se recaliente.</p>
+        </div>
+        <div class="card">
+          <div class="icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#2E9E5B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-3-6.7"/><path d="M21 4v5h-5"/></svg></div>
+          <h3>Formateo</h3>
+          <p>Reinstalamos el sistema y tus programas, con copia de seguridad de tu información antes de empezar.</p>
+        </div>
+        <div class="card">
+          <div class="icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#2E9E5B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M9 12l2 2 4-4"/></svg></div>
+          <h3>Virus y optimización</h3>
+          <p>Eliminamos virus y programas basura, y te enseñamos a protegerte de estafas digitales.</p>
+        </div>
+        <div class="card">
+          <div class="icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#2E9E5B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5a10 10 0 0 1 14 0M8.5 16a5 5 0 0 1 7 0"/><circle cx="12" cy="19.5" r="1"/><path d="M2 9a14.5 14.5 0 0 1 20 0"/></svg></div>
+          <h3>Redes e impresoras</h3>
+          <p>Instalamos y configuramos tu WiFi, impresoras y equipos para facturación electrónica.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-cloud">
+    <div class="wrap">
+      <div class="eyebrow">Por qué Llanotek</div>
+      <h2>Rápido, claro y con garantía</h2>
+      <p class="lead">Sabemos que si tu computador se detiene, tu negocio también.</p>
+      <div class="why">
+        <div><strong>Mismo día</strong><span>Atención inmediata</span><p>Visita en tu sitio el mismo día, o soporte remoto en menos de 2 horas.</p></div>
+        <div><strong>$0</strong><span>Diagnóstico gratis</span><p>Te decimos el precio fijo antes de empezar. Sin cobros sorpresa.</p></div>
+        <div><strong>30 días</strong><span>Garantía</span><p>Si el problema vuelve, regresamos sin costo.</p></div>
+        <div><strong>100%</strong><span>Sin enredos</span><p>Te enviamos por WhatsApp un informe sencillo con fotos del antes y el después.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="precios">
+    <div class="wrap">
+      <div class="eyebrow">Precios</div>
+      <h2>Tarifas fijas, sin sorpresas</h2>
+      <p class="lead">Precios de lanzamiento en pesos colombianos, para servicios dentro de Villavicencio.</p>
+      <div class="prices">
+        <table>
+          <tr><td>Diagnóstico</td><td class="free">Gratis</td></tr>
+          <tr><td>Mantenimiento preventivo</td><td>$60.000</td></tr>
+          <tr><td>Formateo + programas + copia de seguridad</td><td>$80.000</td></tr>
+          <tr><td>Eliminación de virus y optimización</td><td>$50.000</td></tr>
+          <tr><td>Instalación de red WiFi o impresora</td><td>$45.000</td></tr>
+        </table>
+        <div class="plan">
+          <span class="badge">PARA NEGOCIOS</span>
+          <h3>Plan Negocio Tranquilo</h3>
+          <div class="amount">$120.000 <small>/ mes</small></div>
+          <ul>
+            <li>Soporte para hasta 3 equipos</li>
+            <li>Mantenimiento preventivo incluido</li>
+            <li>Atención prioritaria el mismo día</li>
+            <li>Copias de seguridad mensuales</li>
+          </ul>
+          <a class="btn btn-orange" href="#contacto">Quiero el plan</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="como-funciona" class="bg-cloud">
+    <div class="wrap">
+      <div class="eyebrow">Cómo funciona</div>
+      <h2>Cuatro pasos y listo</h2>
+      <p class="lead">Así de fácil es volver a tener tu tecnología funcionando.</p>
+      <div class="steps">
+        <div class="step"><h3>Escríbenos</h3><p>Cuéntanos por WhatsApp o en el formulario qué le pasa a tu equipo.</p></div>
+        <div class="step"><h3>Diagnóstico gratis</h3><p>Revisamos el problema y te damos un precio fijo antes de empezar.</p></div>
+        <div class="step"><h3>Lo arreglamos</h3><p>En tu casa, en tu negocio o de forma remota, el mismo día.</p></div>
+        <div class="step"><h3>Garantía de 30 días</h3><p>Recibes tu informe por WhatsApp y quedas cubierto por un mes.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contacto">
+    <div class="wrap contact">
+      <div class="info">
+        <div class="eyebrow">Contacto</div>
+        <h2>¿Tu computador está fallando?</h2>
+        <p class="lead" style="margin-bottom:24px">Escríbenos y te respondemos hoy mismo.</p>
+        <p><b>Cobertura:</b> Villavicencio y alrededores.</p>
+        <p><b>Horario:</b> lunes a sábado, 8:00 a. m. a 6:00 p. m.</p>
+        <p><b>WhatsApp:</b> <span class="js-wa-text"></span></p>
+        <p style="margin-top:24px"><a class="btn btn-navy js-wa" href="#contacto" target="_blank" rel="noopener">Abrir WhatsApp</a></p>
+      </div>
+      <form id="f">
+        <label>Nombre<input name="nombre" required placeholder="Tu nombre"></label>
+        <label>¿Para hogar o negocio?
+          <select name="tipo"><option>Hogar</option><option>Negocio</option><option>Ambos</option></select>
+        </label>
+        <label>¿Qué le pasa a tu equipo?<textarea name="problema" rows="3" required placeholder="Ej.: está muy lento y se apaga solo"></textarea></label>
+        <label class="check"><input type="checkbox" required> Autorizo a Llanotek el tratamiento de mis datos personales según la Ley 1581 de 2012.</label>
+        <button class="btn btn-orange" type="submit">Enviar por WhatsApp</button>
+        <div class="note" id="note"></div>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <a class="brand" href="#inicio" style="color:#fff">
+      <svg width="34" height="34"><use href="#logo"/></svg>
+      <b style="color:#fff">Llano<span>tek</span></b>
+    </a>
+    <div>Tu tecnología, funcionando. · Villavicencio, Meta · © 2026 Llanotek</div>
+  </div>
+</footer>
+
+<script>
+  // Número de WhatsApp del negocio (código de país + número, sin espacios ni +)
+  const WHATSAPP = "573000000000";
+  const WA_DISPLAY = "+57 300 000 0000";
+  const waBase = "https://wa.me/" + WHATSAPP;
+  const hello = encodeURIComponent("Hola Llanotek, quiero un diagnóstico gratis para mi computador.");
+  document.querySelectorAll(".js-wa").forEach(a => { a.href = waBase + "?text=" + hello; a.target = "_blank"; a.rel = "noopener"; });
+  document.querySelectorAll(".js-wa-text").forEach(s => s.textContent = WA_DISPLAY);
+
+  document.getElementById("f").addEventListener("submit", e => {
+    e.preventDefault();
+    const d = new FormData(e.target);
+    const msg = `Hola Llanotek, soy ${d.get("nombre")} (${d.get("tipo")}). ${d.get("problema")}`;
+    const link = waBase + "?text=" + encodeURIComponent(msg);
+    const note = document.getElementById("note");
+    note.innerHTML = 'Tu mensaje está listo. <a href="' + link + '" target="_blank" rel="noopener">Ábrelo en WhatsApp para enviarlo</a>.';
+  });
+</script>
+</body>
+</html>
